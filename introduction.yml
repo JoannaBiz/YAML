@@ -1,0 +1,145 @@
+---
+firstname: easy # schemat klucza i wartości: klucz: space x1, wartość
+lastname: bytes
+courses: # schemat array: klucz: space x2, myślnik, space x1, wartość
+  - YAML
+  - Spring Microservices
+  - Spring Security
+  # klucz jako wartość firstname: "easy:" wówczas nie ma błędu
+courses2: # potraktuje jako jedną wartość
+ - YAML
+  - Spring Microservices
+  - Spring Security
+# scalars
+# <key>: <value>
+# string example
+name: easybytes
+languagge: "Java"
+area: 'Online'
+# number example 
+major-version: 2
+minor-version: 0.5
+hex: 0x12d6 # evaluates to 4822
+octal: 024432 # evaluates to 10522
+# boolean example
+goodDay: true
+badDay: false
+niceweekend: Yes 
+boringweekend: No
+# infinity example
+positive-infinity: .inf # evaluates to infinity
+negative-infinity: -.Inf # evaluates to negative infinity
+# null example
+invalidNumber: .NAN # Not a Number
+null-value: null
+null-value1: ~
+# string 
+# > folded style
+# | literal style
+# \n \n
+organization: eazybank
+about: |
+  EasyBank
+  is an
+  Bank based
+  application.
+history: >
+  EasyBank 
+  established
+  in 1989.
+products: "[Account] & {Cards} - <Loans>" # for special characters, we need to use double quotes in String
+hasMobileApp: "Yes" # with out quotes will result as True
+# implicit and explicit 
+# !![typeName] f.ex. !!bool false
+# ... end yaml file
+# !!blool !!int !!float !!str !!timestamp !!null
+# sequences 
+# List of sequence in Black Style
+applications: 
+- Cards
+- Loans
+- Accounts
+departments:
+  - Marketing
+  - Insurance
+  - Security
+# List sequence in flow Style
+locations: [Hyderabad, NewYork, Berlin, "Paris"]
+# Embeded/Nested Sequences
+products2:
+  - Accounts:
+      - Savings Account
+      - Current Account
+  - Loans: 
+      - Home Loan
+      - Car Loan
+      - Personal Loan
+  - Cards:
+      - Credit Card
+      - Debit Card
+# dictionary 
+applications2:
+  - cards:
+    name: EasyCards
+    technology: Python
+    team-size: 12
+  - accounts: 
+    name: EasyAccounts
+    technology: "Java"
+    team-size: 50
+  - loans:
+    name: EasyLoans
+    technology: Ruby
+    team-size: 8
+# keys can also be complex, like multi-line objects
+?  This is a key
+   that has mutiple lines
+:  and this is its value
+?  - Dev
+   - Test
+   - PROD 
+:  - https://dev
+   - https://test
+   - https://prod
+# anchors (definition) and alias (alias)
+definitions:
+  days:
+    - weekday: &working
+        wakeup: 6.00 AM 
+        activities:
+          - workout
+          - meetings
+          - work
+          - sleep
+        sleeptime: 10:00 PM
+    - weekend: &holiday
+        wakeup: 08:00 AM
+        activities:
+          - workout
+          - playing
+          - movies 
+          - friends
+          - sleep
+        sleeptime: 12:00 AM 
+schedules:
+  days:
+    weekdays:
+      - monday: *working
+      - tuesday: *working
+      - wednesday: *working
+      - thursday: *working
+      - friday: 
+        <<: *working # exeption for anchor
+        sleeptime: 11:00 PM
+    weekends:
+      - saturday: *holiday
+      - sunday: *holiday
+--- # start doc
+... # end doc
+
+
+
+
+
+
+
